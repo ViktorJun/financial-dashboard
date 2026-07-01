@@ -1,4 +1,4 @@
-import { NgClass, CurrencyPipe } from '@angular/common';
+import { CurrencyPipe, DatePipe, NgClass } from '@angular/common';
 import { Component, input } from '@angular/core';
 
 import { Loan } from '../../../../core/models/loan.model';
@@ -11,7 +11,7 @@ import {
 @Component({
   selector: 'app-loans-table',
   standalone: true,
-  imports: [NgClass, CurrencyPipe],
+  imports: [NgClass, CurrencyPipe, DatePipe],
   templateUrl: './loans-table.component.html',
 })
 export class LoansTableComponent {
