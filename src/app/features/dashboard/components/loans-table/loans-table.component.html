@@ -18,8 +18,8 @@
         <tr [ngClass]="getLoanRowClass(loan)">
           <td>{{ loan.id }}</td>
           <td>{{ loan.user }}</td>
-          <td>{{ formatCurrency(loan.body) }}</td>
-          <td>{{ formatCurrency(loan.percent) }}</td>
+          <td>{{ loan.body | currency:'UAH':'symbol':'1.2-2' }}</td>
+          <td>{{ loan.percent | currency:'UAH':'symbol':'1.2-2' }}</td>
           <td>{{ loan.issuance_date }}</td>
           <td>{{ loan.return_date }}</td>
           <td>{{ loan.actual_return_date || '-' }}</td>

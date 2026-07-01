@@ -1,19 +1,16 @@
 import { Component, input } from '@angular/core';
+import { CurrencyPipe, PercentPipe } from '@angular/common';
 
 import {
   TopUserByLoansCount,
   TopUserByPaidPercent,
   TopUserByPercentToBodyRatio,
 } from '../../../../core/models/top-user-metric.model';
-import {
-  formatCurrency,
-  formatPercent,
-} from '../../../../core/utils/number.utils';
 
 @Component({
   selector: 'app-top-users-metrics',
   standalone: true,
-  imports: [],
+  imports: [CurrencyPipe, PercentPipe],
   templateUrl: './top-users-metrics.component.html',
 })
 export class TopUsersMetricsComponent {
@@ -21,7 +18,4 @@ export class TopUsersMetricsComponent {
   readonly topUsersByPaidPercent = input.required<TopUserByPaidPercent[]>();
   readonly topUsersByPercentToBodyRatio =
     input.required<TopUserByPercentToBodyRatio[]>();
-
-  protected readonly formatCurrency = formatCurrency;
-  protected readonly formatPercent = formatPercent;
 }

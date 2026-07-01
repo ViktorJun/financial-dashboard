@@ -61,7 +61,7 @@
                 <tr>
                   <td>{{ index + 1 }}</td>
                   <td>{{ userMetric.user }}</td>
-                  <td>{{ formatCurrency(userMetric.totalPaidPercent) }}</td>
+                  <td>{{ userMetric.totalPaidPercent | currency:'UAH':'symbol':'1.2-2' }}</td>
                 </tr>
               } @empty {
                 <tr>
@@ -100,7 +100,7 @@
                 <tr>
                   <td>{{ index + 1 }}</td>
                   <td>{{ userMetric.user }}</td>
-                  <td>{{ formatPercent(userMetric.ratio) }}</td>
+                  <td>{{ userMetric.ratio | percent:'1.0-2' }}</td>
                 </tr>
               } @empty {
                 <tr>

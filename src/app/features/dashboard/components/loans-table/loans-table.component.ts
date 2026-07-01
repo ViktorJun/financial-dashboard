@@ -1,4 +1,4 @@
-import { NgClass } from '@angular/common';
+import { NgClass, CurrencyPipe } from '@angular/common';
 import { Component, input } from '@angular/core';
 
 import { Loan } from '../../../../core/models/loan.model';
@@ -7,12 +7,11 @@ import {
   getLoanStatusClass,
   getLoanStatusLabel,
 } from '../../../../core/utils/loan.utils';
-import { formatCurrency } from '../../../../core/utils/number.utils';
 
 @Component({
   selector: 'app-loans-table',
   standalone: true,
-  imports: [NgClass],
+  imports: [NgClass, CurrencyPipe],
   templateUrl: './loans-table.component.html',
 })
 export class LoansTableComponent {
@@ -21,5 +20,4 @@ export class LoansTableComponent {
   protected readonly getLoanRowClass = getLoanRowClass;
   protected readonly getLoanStatusClass = getLoanStatusClass;
   protected readonly getLoanStatusLabel = getLoanStatusLabel;
-  protected readonly formatCurrency = formatCurrency;
 }

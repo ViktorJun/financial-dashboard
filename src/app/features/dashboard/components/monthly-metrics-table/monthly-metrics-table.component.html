@@ -32,15 +32,15 @@
               </td>
 
               <td>
-                {{ formatCurrency(metric.averageBody) }}
+                {{ metric.averageBody | currency:'UAH':'symbol':'1.2-2' }}
               </td>
 
               <td>
-                {{ formatCurrency(metric.totalBody) }}
+                {{ metric.totalBody | currency:'UAH':'symbol':'1.2-2' }}
               </td>
 
               <td>
-                {{ formatCurrency(metric.totalPercent) }}
+                {{ metric.totalPercent | currency:'UAH':'symbol':'1.2-2' }}
               </td>
 
               <td>
