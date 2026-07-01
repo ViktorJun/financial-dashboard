@@ -1,0 +1,61 @@
+<div class="card">
+  <div class="card-body">
+    <div class="mb-3">
+      <h2 class="h5 mb-1">Метрики по місяцях</h2>
+      <p class="text-muted mb-0">
+        Групування виконано за датою видачі кредиту.
+      </p>
+    </div>
+
+    <div class="table-responsive">
+      <table class="table table-striped table-hover align-middle">
+        <thead class="table-light">
+        <tr>
+          <th scope="col">Місяць</th>
+          <th scope="col">Видано кредитів</th>
+          <th scope="col">Середня сума</th>
+          <th scope="col">Загальна сума</th>
+          <th scope="col">Нараховані відсотки</th>
+          <th scope="col">Повернено кредитів</th>
+        </tr>
+        </thead>
+
+        <tbody>
+          @for (metric of metrics(); track metric.monthKey) {
+            <tr>
+              <td class="text-capitalize">
+                {{ metric.monthLabel }}
+              </td>
+
+              <td>
+                {{ metric.issuedCount }}
+              </td>
+
+              <td>
+                {{ formatCurrency(metric.averageBody) }}
+              </td>
+
+              <td>
+                {{ formatCurrency(metric.totalBody) }}
+              </td>
+
+              <td>
+                {{ formatCurrency(metric.totalPercent) }}
+              </td>
+
+              <td>
+                {{ metric.returnedCount }}
+              </td>
+            </tr>
+          } @empty {
+            <tr>
+              <td colspan="6" class="text-center text-muted py-4">
+                Немає даних для відображення.
+              </td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

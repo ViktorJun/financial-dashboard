@@ -1,0 +1,30 @@
+<div class="mb-4">
+  <h1 class="h3 mb-1">Коротка інформація</h1>
+  <p class="text-muted mb-0">
+    Основні фінансові метрики по місяцях та користувачах.
+  </p>
+</div>
+
+@if (loansStore.isLoading()) {
+  <div class="alert alert-info">
+    Завантаження даних...
+  </div>
+}
+
+@if (loansStore.error()) {
+  <div class="alert alert-danger">
+    {{ loansStore.error() }}
+  </div>
+}
+
+@if (!loansStore.isLoading() && !loansStore.error()) {
+  <app-monthly-metrics-table
+    [metrics]="loansStore.monthlyMetrics()"
+  />
+
+  <app-top-users-metrics
+    [topUsersByLoansCount]="loansStore.topUsersByLoansCount()"
+    [topUsersByPaidPercent]="loansStore.topUsersByPaidPercent()"
+    [topUsersByPercentToBodyRatio]="loansStore.topUsersByPercentToBodyRatio()"
+  />
+}

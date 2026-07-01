@@ -1,0 +1,94 @@
+<div class="card mb-4">
+  <div class="card-body">
+    <div class="d-flex justify-content-between align-items-center gap-3 mb-3">
+      <div>
+        <h2 class="h5 mb-1">Фільтри</h2>
+        <p class="text-muted mb-0">
+          Фільтруйте кредити за датами та статусом прострочення.
+        </p>
+      </div>
+
+      <button
+        type="button"
+        class="btn btn-outline-secondary btn-sm"
+        (click)="resetFilters()"
+      >
+        Скинути
+      </button>
+    </div>
+
+    <div class="row g-3">
+      <div class="col-12 col-md-6 col-lg-3">
+        <label for="issuanceDateFrom" class="form-label">
+          Дата видачі від
+        </label>
+
+        <input
+          id="issuanceDateFrom"
+          type="date"
+          class="form-control"
+          [value]="filters().issuanceDateFrom"
+          (input)="updateDateFilter('issuanceDateFrom', $event)"
+        />
+      </div>
+
+      <div class="col-12 col-md-6 col-lg-3">
+        <label for="issuanceDateTo" class="form-label">
+          Дата видачі до
+        </label>
+
+        <input
+          id="issuanceDateTo"
+          type="date"
+          class="form-control"
+          [value]="filters().issuanceDateTo"
+          (input)="updateDateFilter('issuanceDateTo', $event)"
+        />
+      </div>
+
+      <div class="col-12 col-md-6 col-lg-3">
+        <label for="actualReturnDateFrom" class="form-label">
+          Фактичне повернення від
+        </label>
+
+        <input
+          id="actualReturnDateFrom"
+          type="date"
+          class="form-control"
+          [value]="filters().actualReturnDateFrom"
+          (input)="updateDateFilter('actualReturnDateFrom', $event)"
+        />
+      </div>
+
+      <div class="col-12 col-md-6 col-lg-3">
+        <label for="actualReturnDateTo" class="form-label">
+          Фактичне повернення до
+        </label>
+
+        <input
+          id="actualReturnDateTo"
+          type="date"
+          class="form-control"
+          [value]="filters().actualReturnDateTo"
+          (input)="updateDateFilter('actualReturnDateTo', $event)"
+        />
+      </div>
+
+      <div class="col-12">
+        <div class="form-check">
+          <input
+            id="showOnlyOverdue"
+            type="checkbox"
+            class="form-check-input"
+            [checked]="filters().showOnlyOverdue"
+            (change)="updateOverdueFilter($event)"
+          />
+
+          <label for="showOnlyOverdue" class="form-check-label">
+            Показати тільки прострочені кредити
+          </label>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

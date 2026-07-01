@@ -1,0 +1,118 @@
+<div class="row g-4 mt-1">
+  <div class="col-12 col-xl-4">
+    <div class="card h-100">
+      <div class="card-body">
+        <h2 class="h5 mb-1">Топ-10 за кількістю кредитів</h2>
+        <p class="text-muted mb-3">
+          Користувачі з найбільшою кількістю отриманих кредитів.
+        </p>
+
+        <div class="table-responsive">
+          <table class="table table-sm table-hover align-middle mb-0">
+            <thead class="table-light">
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">Користувач</th>
+              <th scope="col">Кредитів</th>
+            </tr>
+            </thead>
+
+            <tbody>
+              @for (userMetric of topUsersByLoansCount(); track userMetric.user; let index = $index) {
+                <tr>
+                  <td>{{ index + 1 }}</td>
+                  <td>{{ userMetric.user }}</td>
+                  <td>{{ userMetric.loansCount }}</td>
+                </tr>
+              } @empty {
+                <tr>
+                  <td colspan="3" class="text-center text-muted py-4">
+                    Немає даних.
+                  </td>
+                </tr>
+              }
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-12 col-xl-4">
+    <div class="card h-100">
+      <div class="card-body">
+        <h2 class="h5 mb-1">Топ-10 за сплаченими відсотками</h2>
+        <p class="text-muted mb-3">
+          Враховано тільки повернені кредити.
+        </p>
+
+        <div class="table-responsive">
+          <table class="table table-sm table-hover align-middle mb-0">
+            <thead class="table-light">
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">Користувач</th>
+              <th scope="col">Сума відсотків</th>
+            </tr>
+            </thead>
+
+            <tbody>
+              @for (userMetric of topUsersByPaidPercent(); track userMetric.user; let index = $index) {
+                <tr>
+                  <td>{{ index + 1 }}</td>
+                  <td>{{ userMetric.user }}</td>
+                  <td>{{ formatCurrency(userMetric.totalPaidPercent) }}</td>
+                </tr>
+              } @empty {
+                <tr>
+                  <td colspan="3" class="text-center text-muted py-4">
+                    Немає даних.
+                  </td>
+                </tr>
+              }
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-12 col-xl-4">
+    <div class="card h-100">
+      <div class="card-body">
+        <h2 class="h5 mb-1">Топ-10 за співвідношенням відсотків до суми кредитів</h2>
+        <p class="text-muted mb-3">
+          Найбільше співвідношення сплачених відсотків до суми кредитів.
+        </p>
+
+        <div class="table-responsive">
+          <table class="table table-sm table-hover align-middle mb-0">
+            <thead class="table-light">
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">Користувач</th>
+              <th scope="col">Співвідношення</th>
+            </tr>
+            </thead>
+
+            <tbody>
+              @for (userMetric of topUsersByPercentToBodyRatio(); track userMetric.user; let index = $index) {
+                <tr>
+                  <td>{{ index + 1 }}</td>
+                  <td>{{ userMetric.user }}</td>
+                  <td>{{ formatPercent(userMetric.ratio) }}</td>
+                </tr>
+              } @empty {
+                <tr>
+                  <td colspan="3" class="text-center text-muted py-4">
+                    Немає даних.
+                  </td>
+                </tr>
+              }
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

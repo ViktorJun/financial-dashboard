@@ -1,27 +1,61 @@
-# FinancialDashboard
+# Фінансовий дашборд
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 18.2.21.
+Невеликий фінансовий дашборд на Angular для перегляду кредитів, фільтрації даних та аналізу основних фінансових метрик.
 
-## Development server
+Дані завантажуються з відкритого JSON API:
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+```text
+https://raw.githubusercontent.com/LightOfTheSun/front-end-coding-task-db/master/db.json
+```
 
-## Code scaffolding
+## Технології
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+- Angular 18;
+- standalone-компоненти;
+- Angular Router з лінивим завантаженням сторінок;
+- сигнали та `computed`;
+- RxJS;
+- Bootstrap 5.
 
-## Build
+## Запуск проєкту
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+```bash
+npm install
+npm start
+```
 
-## Running unit tests
+Після запуску застосунок буде доступний за адресою:
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+```text
+http://localhost:4200
+```
 
-## Running end-to-end tests
+Для збірки проєкту:
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+```bash
+npm run build
+```
 
-## Further help
+## Реалізовано
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+- сторінка загальної таблиці кредитів;
+- фільтри за датою видачі, датою фактичного повернення та простроченими кредитами;
+- пагінація з вибором кількості записів на сторінці;
+- сторінка короткої інформації з місячними фінансовими метриками;
+- топ-10 користувачів за кількістю кредитів;
+- топ-10 користувачів за сумою сплачених відсотків;
+- топ-10 користувачів за співвідношенням сплачених відсотків до суми кредитів.
+
+## Сторінки
+
+### Загальна таблиця
+
+На сторінці відображається список кредитів з основними полями: користувач, сума кредиту, відсотки, дата видачі, планова дата повернення, фактична дата повернення та статус.
+
+Фільтри дозволяють звузити список за періодом видачі, періодом фактичного повернення або показати тільки прострочені кредити.
+
+### Коротка інформація
+
+На сторінці зібрані метрики, згруповані за місяцем видачі кредиту: кількість виданих кредитів, середня сума, загальна сума, нараховані відсотки та кількість повернених кредитів.
+
+Також додані окремі таблиці з топ-користувачами за ключовими показниками.

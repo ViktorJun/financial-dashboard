@@ -1,0 +1,43 @@
+<div class="mb-4">
+  <h1 class="h3 mb-1">Загальна таблиця</h1>
+  <p class="text-muted mb-0">
+    Список виданих кредитів з фільтрами та пагінацією.
+  </p>
+</div>
+
+@if (loansStore.isLoading()) {
+  <div class="alert alert-info">
+    Завантаження даних...
+  </div>
+}
+
+@if (loansStore.error()) {
+  <div class="alert alert-danger">
+    {{ loansStore.error() }}
+  </div>
+}
+
+@if (!loansStore.isLoading() && !loansStore.error()) {
+  <app-loans-filters
+    [filters]="loansStore.filters()"
+    (filtersChange)="loansStore.updateFilters($event)"
+    (filtersReset)="loansStore.resetFilters()"
+  />
+
+  <p class="text-muted">
+    Знайдено {{ loansStore.filteredLoans().length }} з {{ loansStore.loans().length }} кредитів.
+  </p>
+
+  <app-loans-table [loans]="loansStore.paginatedLoans()" />
+
+  <app-loans-pagination
+    [currentPage]="loansStore.currentPage()"
+    [totalPages]="loansStore.totalPages()"
+    [pageNumbers]="loansStore.pageNumbers()"
+    [pageSize]="loansStore.pageSize()"
+    [pageSizeOptions]="loansStore.pageSizeOptions"
+    [totalItems]="loansStore.totalItems()"
+    (pageChange)="loansStore.setCurrentPage($event)"
+    (pageSizeChange)="loansStore.setPageSize($event)"
+  />
+}

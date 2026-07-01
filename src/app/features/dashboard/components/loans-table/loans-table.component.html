@@ -1,0 +1,41 @@
+<div class="table-responsive">
+  <table class="table table-striped table-hover align-middle">
+    <thead class="table-light">
+    <tr>
+      <th scope="col">ID</th>
+      <th scope="col">Користувач</th>
+      <th scope="col">Сума кредиту</th>
+      <th scope="col">Відсотки</th>
+      <th scope="col">Дата видачі</th>
+      <th scope="col">Дата повернення</th>
+      <th scope="col">Фактичне повернення</th>
+      <th scope="col">Статус</th>
+    </tr>
+    </thead>
+
+    <tbody>
+      @for (loan of loans(); track loan.id) {
+        <tr [ngClass]="getLoanRowClass(loan)">
+          <td>{{ loan.id }}</td>
+          <td>{{ loan.user }}</td>
+          <td>{{ formatCurrency(loan.body) }}</td>
+          <td>{{ formatCurrency(loan.percent) }}</td>
+          <td>{{ loan.issuance_date }}</td>
+          <td>{{ loan.return_date }}</td>
+          <td>{{ loan.actual_return_date || '-' }}</td>
+          <td>
+            <span class="badge" [ngClass]="getLoanStatusClass(loan)">
+              {{ getLoanStatusLabel(loan) }}
+            </span>
+          </td>
+        </tr>
+      } @empty {
+        <tr>
+          <td colspan="8" class="text-center text-muted py-4">
+            Немає даних для відображення.
+          </td>
+        </tr>
+      }
+    </tbody>
+  </table>
+</div>
